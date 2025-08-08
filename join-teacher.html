@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join as an IB Teacher - IB JORDAN Network</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .select2-container {
+            width: 100% !important;
+        }
+        .select2-container--default .select2-selection--multiple {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            min-height: 45px;
+            padding: 0.8rem 1rem;
+        }
+        .select2-container--default .select2-selection--multiple .select2-selection__choice {
+            background-color: #16a279;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            padding: 2px 8px;
+            margin: 2px;
+        }
+        .select2-container--default .select2-selection--single {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            min-height: 45px;
+            padding: 0.8rem 1rem;
+        }
+        .form-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .form-section h3 {
+            color: #333;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #16a279;
+            padding-bottom: 10px;
+        }
+        .file-upload {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .file-upload:hover {
+            border-color: #16a279;
+            background-color: #f9f9f9;
+        }
+        .file-upload i {
+            font-size: 3rem;
+            color: #ddd;
+            margin-bottom: 15px;
+        }
+        .file-upload.dragover {
+            border-color: #16a279;
+            background-color: #f0f8f0;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background-color: #f0f0f0;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        .progress-fill {
+            height: 100%;
+            background-color: #16a279;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .join-form-section {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="imgs/logo.jpg" alt="IB JORDAN Network">
+            </div>
+            
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="find-teacher.html" class="nav-link">Find IB Teacher</a></li>
+                    <li><a href="ib-schools.html" class="nav-link">IB Schools</a></li>
+                    <li><a href="career.html" class="nav-link">Career</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <a href="login.html" class="btn btn-login">Login</a>
+                <div class="dropdown">
+                    <button class="btn btn-join">
+                        Join us
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="join-teacher.html" class="dropdown-item">Join as an IB Teacher</a>
+                        <a href="join-student.html" class="dropdown-item">Join as an IB Student</a>
+                        <a href="become-teacher.html" class="dropdown-item">Become an IB Teacher</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="section-title text-center">Join as an IB Teacher</h1>
+            <p class="section-subtitle text-center">Join our network of qualified IB teachers and connect with schools across Jordan</p>
+        </div>
+    </section>
+
+    <!-- Join Teacher Form Section -->
+    <section class="join-form-section">
+        <div class="container">
+            <div class="form-container">
+                <form id="teacherForm" class="contact-form">
+                    <!-- Personal Information -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-user"></i> Personal Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullName">Full Name *</label>
+                                <input type="text" id="fullName" name="fullName" required 
+                                       placeholder="Teacher's full name as it will appear on the profile">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required 
+                                       placeholder="Used for contact purposes or admin verification">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required 
+                                       placeholder="This number will be kept private">
+                            </div>
+                            <div class="form-group">
+                                <label for="experience">Number of years of experience in IB program *</label>
+                                <input type="number" id="experience" name="experience" required min="0" max="50"
+                                       placeholder="Enter number of years of experience">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Picture -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-camera"></i> Profile Picture</h3>
+                        <div class="form-group">
+                            <label>Profile Picture *</label>
+                            <div class="file-upload" id="profilePictureUpload">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Click to upload or drag and drop</p>
+                                <small>Maximum file size: 5 MB</small>
+                                <input type="file" id="profilePicture" name="profilePicture" accept="image/*" style="display: none;">
+                            </div>
+                            <div class="progress-bar" id="profileProgress" style="display: none;">
+                                <div class="progress-fill" id="profileProgressFill"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- IB Subjects -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-graduation-cap"></i> IB Subjects Taught</h3>
+                        <div class="form-group">
+                            <label for="dpSubjects">DP Subjects *</label>
+                            <select id="dpSubjects" name="dpSubjects[]" multiple required>
+                                <option value="math_aa_hl">Mathematics: Analysis & Approaches HL</option>
+                                <option value="math_aa_sl">Mathematics: Analysis & Approaches SL</option>
+                                <option value="math_ai_hl">Mathematics: Applications and Interpretations HL</option>
+                                <option value="math_ai_sl">Mathematics: Applications and Interpretations SL</option>
+                                <option value="biology">Biology</option>
+                                <option value="chemistry">Chemistry</option>
+                                <option value="physics">Physics</option>
+                                <option value="english_a">English A</option>
+                                <option value="english_b">English B</option>
+                                <option value="arabic_a">Arabic A</option>
+                                <option value="arabic_b">Arabic B</option>
+                                <option value="business">Business</option>
+                                <option value="economics">Economics</option>
+                                <option value="history">History</option>
+                                <option value="global_politics">Global Politics</option>
+                                <option value="tok">TOK</option>
+                                <option value="environmental_systems">Environmental Systems</option>
+                                <option value="visual_arts">Visual Arts</option>
+                                <option value="music">Music</option>
+                                <option value="theatre">Theatre</option>
+                                <option value="film">Film</option>
+                                <option value="spanish">Spanish</option>
+                                <option value="design">Design</option>
+                                <option value="sports_science">Sports Science</option>
+                                <option value="computer_science">Computer Science</option>
+                                <option value="dont_teach_dp">Don't teach DP</option>
+                            </select>
+                            <small>Select all DP subjects this teacher can teach</small>
+                        </div>
+                    </div>
+
+                    <!-- MYP Subjects -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-book"></i> MYP Subjects</h3>
+                        <div class="form-group">
+                            <label for="mypSubjects">MYP Subjects *</label>
+                            <select id="mypSubjects" name="mypSubjects[]" multiple required>
+                                <option value="arabic_6_8">Arabic 6-8</option>
+                                <option value="arabic_9_10">Arabic 9-10</option>
+                                <option value="english_6_8">English 6-8</option>
+                                <option value="english_9_10">English 9-10</option>
+                                <option value="science_6_8">Science 6-8</option>
+                                <option value="physics_9_10">Physics 9-10</option>
+                                <option value="chemistry_9_10">Chemistry 9-10</option>
+                                <option value="biology_9_10">Biology 9-10</option>
+                                <option value="math_6_8">Math 6-8</option>
+                                <option value="math_9_10">Math 9-10</option>
+                                <option value="design">Design</option>
+                                <option value="art">Art</option>
+                                <option value="ict">ICT</option>
+                                <option value="personal_project">Personal Project</option>
+                                <option value="dont_teach_myp">Don't Teach MYP</option>
+                            </select>
+                            <small>Select all MYP subjects this teacher can teach</small>
+                        </div>
+                    </div>
+
+                    <!-- Bio -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-file-alt"></i> Professional Summary</h3>
+                        <div class="form-group">
+                            <label for="bio">Short Bio *</label>
+                            <textarea id="bio" name="bio" rows="4" required 
+                                      placeholder="Write a short professional summary (2–4 lines)"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- School Information -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-school"></i> School Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="currentSchool">Current School *</label>
+                                <select id="currentSchool" name="currentSchool" required>
+                                    <option value="">Select current school</option>
+                                    <option value="ahliyyah_mutran">Ahliyyah and Mutran School</option>
+                                    <option value="amman_academy">Amman Academy</option>
+                                    <option value="amman_baccalaureate">Amman Baccalaureate School</option>
+                                    <option value="amman_baptist">Amman Baptist School</option>
+                                    <option value="amman_national">Amman National School</option>
+                                    <option value="asamiah_international">Asamiah International School</option>
+                                    <option value="british_international">British International Academy (BIA)</option>
+                                    <option value="cambridge_high">Cambridge High School</option>
+                                    <option value="canadian_international">Canadian International School – Amman</option>
+                                    <option value="college_de_la_salle">Collège De La Salle (Frères)</option>
+                                    <option value="english_talents">English Talents School</option>
+                                    <option value="ibn_rushd">Ibn Rushd National Academy</option>
+                                    <option value="international_academy">International Academy Amman</option>
+                                    <option value="islamic_educational">Islamic Educational College-Al Jubeiha</option>
+                                    <option value="mashrek_international">Mashrek International School</option>
+                                    <option value="modern_american">Modern American School</option>
+                                    <option value="modern_montessori">Modern Montessori School</option>
+                                    <option value="national_orthodox">National Orthodox School</option>
+                                    <option value="dont_teach_ib">Don't teach currently in an IB school</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="previousSchool">Previous School(s) *</label>
+                                <select id="previousSchool" name="previousSchool[]" multiple required>
+                                    <option value="ahliyyah_mutran">Ahliyyah and Mutran School</option>
+                                    <option value="amman_academy">Amman Academy</option>
+                                    <option value="amman_baccalaureate">Amman Baccalaureate School</option>
+                                    <option value="amman_baptist">Amman Baptist School</option>
+                                    <option value="amman_national">Amman National School</option>
+                                    <option value="asamiah_international">Asamiah International School</option>
+                                    <option value="british_international">British International Academy (BIA)</option>
+                                    <option value="cambridge_high">Cambridge High School</option>
+                                    <option value="canadian_international">Canadian International School – Amman</option>
+                                    <option value="college_de_la_salle">Collège De La Salle (Frères)</option>
+                                    <option value="english_talents">English Talents School</option>
+                                    <option value="ibn_rushd">Ibn Rushd National Academy</option>
+                                    <option value="international_academy">International Academy Amman</option>
+                                    <option value="islamic_educational">Islamic Educational College-Al Jubeiha</option>
+                                    <option value="mashrek_international">Mashrek International School</option>
+                                    <option value="modern_american">Modern American School</option>
+                                    <option value="modern_montessori">Modern Montessori School</option>
+                                    <option value="national_orthodox">National Orthodox School</option>
+                                    <option value="dont_teach_ib">Don't teach currently in an IB school</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="availableForHire">Available for Hire Next Year *</label>
+                            <select id="availableForHire" name="availableForHire" required>
+                                <option value="">Select availability</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                            <small>Are available for a new IB position next academic year</small>
+                        </div>
+                    </div>
+
+                    <!-- CV Upload -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-file-pdf"></i> CV Upload</h3>
+                        <div class="form-group">
+                            <label>Upload your CV *</label>
+                            <div class="file-upload" id="cvUpload">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Click to upload or drag and drop</p>
+                                <small>Maximum file size: 2 GB</small>
+                                <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx" style="display: none;">
+                            </div>
+                            <div class="progress-bar" id="cvProgress" style="display: none;">
+                                <div class="progress-fill" id="cvProgressFill"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reference -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-user-tie"></i> Reference Contact</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="referenceName">Reference Name *</label>
+                                <input type="text" id="referenceName" name="referenceName" required 
+                                       placeholder="Name of reference">
+                            </div>
+                            <div class="form-group">
+                                <label for="referencePosition">Reference Position *</label>
+                                <input type="text" id="referencePosition" name="referencePosition" required 
+                                       placeholder="Position of reference">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="referenceEmail">Reference Email *</label>
+                            <input type="email" id="referenceEmail" name="referenceEmail" required 
+                                   placeholder="Email of reference">
+                            <small>Please provide the name, position, and email of a current school reference</small>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-section">
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 18px;">
+                            <i class="fas fa-paper-plane"></i> Submit Application
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="logo-text">
+                            <div class="logo-main">Jordan IB Network</div>
+                            <div class="logo-ib">International Baccalaureate</div>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        Connecting IB teachers, students, and schools across Jordan for better educational opportunities.
+                    </p>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="career.html">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Contact Info</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@jordanibnetwork.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+962 6 123 4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Amman, Jordan</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Jordan IB Network. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Initialize Select2 for multi-select dropdowns
+            $('#dpSubjects, #mypSubjects, #previousSchool').select2({
+                placeholder: 'Select options...',
+                allowClear: true,
+                tags: false
+            });
+
+            // File upload functionality
+            function setupFileUpload(uploadId, inputId, progressId, progressFillId) {
+                const upload = document.getElementById(uploadId);
+                const input = document.getElementById(inputId);
+                const progress = document.getElementById(progressId);
+                const progressFill = document.getElementById(progressFillId);
+
+                upload.addEventListener('click', () => input.click());
+                upload.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    upload.classList.add('dragover');
+                });
+                upload.addEventListener('dragleave', () => {
+                    upload.classList.remove('dragover');
+                });
+                upload.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    upload.classList.remove('dragover');
+                    const files = e.dataTransfer.files;
+                    if (files.length > 0) {
+                        input.files = files;
+                        handleFileSelect(input, progress, progressFill);
+                    }
+                });
+
+                input.addEventListener('change', () => {
+                    handleFileSelect(input, progress, progressFill);
+                });
+            }
+
+            function handleFileSelect(input, progress, progressFill) {
+                const file = input.files[0];
+                if (file) {
+                    progress.style.display = 'block';
+                    progressFill.style.width = '0%';
+                    
+                    // Simulate upload progress
+                    let progressValue = 0;
+                    const interval = setInterval(() => {
+                        progressValue += Math.random() * 20;
+                        if (progressValue >= 100) {
+                            progressValue = 100;
+                            clearInterval(interval);
+                        }
+                        progressFill.style.width = progressValue + '%';
+                    }, 200);
+                }
+            }
+
+            setupFileUpload('profilePictureUpload', 'profilePicture', 'profileProgress', 'profileProgressFill');
+            setupFileUpload('cvUpload', 'cv', 'cvProgress', 'cvProgressFill');
+
+            // Form submission
+            $('#teacherForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                // Validate form
+                if (this.checkValidity()) {
+                    // Show success message
+                    alert('Thank you for your application! We will review your information and contact you soon.');
+                    this.reset();
+                    $('#dpSubjects, #mypSubjects, #previousSchool').val(null).trigger('change');
+                } else {
+                    alert('Please fill in all required fields.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

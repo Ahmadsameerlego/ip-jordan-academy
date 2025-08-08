@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Details - IB JORDAN Network</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Teacher Details Page Specific Styles */
+        .teacher-details-section {
+            margin-top: 120px;
+            padding: 2rem 0;
+        }
+
+        .teacher-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+            margin-top: 100px;
+        }
+
+        .teacher-profile {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .teacher-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .teacher-info h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .teacher-subjects {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .teacher-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .teacher-rating i {
+            color: #ffd700;
+        }
+
+        /* Tabs Styles */
+        .tabs-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .tabs-nav {
+            display: flex;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 1rem 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #666;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .tab-button:hover {
+            background: #f8f9fa;
+            color: #333;
+        }
+
+        .tab-button.active {
+            background: #16a279;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Description Tab */
+        .description-content {
+            line-height: 1.8;
+        }
+
+        .description-content h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .description-content p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+
+        .teacher-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #16a279;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Files Tab */
+        .files-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .file-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .file-card:hover {
+            border-color: #16a279;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .file-icon {
+            font-size: 2rem;
+            color: #16a279;
+            margin-bottom: 1rem;
+        }
+
+        .file-name {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .file-info {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Videos Tab */
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .video-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .video-thumbnail {
+            height: 180px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .video-thumbnail i {
+            font-size: 3rem;
+            color: white;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #16a279;
+        }
+
+        .video-info {
+            padding: 1.5rem;
+        }
+
+        .video-title {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .video-duration {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Bookings Tab */
+        .bookings-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .booking-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-left: 4px solid #16a279;
+        }
+
+        .booking-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .student-name {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .booking-status {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .status-confirmed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-cancelled {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .booking-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+        }
+
+        .detail-item i {
+            color: #16a279;
+        }
+
+        /* Video Modal */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 10px;
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        .video-container {
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            position: relative;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .teacher-profile {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .tabs-nav {
+                flex-direction: column;
+            }
+
+            .tab-button {
+                border-radius: 0;
+            }
+
+            .files-grid,
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .teacher-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .booking-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .teacher-info h1 {
+                font-size: 2rem;
+            }
+
+            .teacher-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .tab-content {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+               <img src="imgs/logo.jpg" alt="IB JORDAN Network">
+            </div>
+            
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="find-teacher.html" class="nav-link">Find IB Teacher</a></li>
+                     <li><a href="ib-schools.html" class="nav-link">IB Schools</a></li>
+                    <li><a href="career.html" class="nav-link">Career</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <a href="login.html" class="btn btn-login">Login</a>
+                <div class="dropdown">
+                    <button class="btn btn-join">
+                        Join us
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="join-teacher.html" class="dropdown-item">Join as an IB Teacher</a>
+                        <a href="join-student.html" class="dropdown-item">Join as an IB Student</a>
+                        <a href="become-teacher.html" class="dropdown-item">Become an IB Teacher</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Teacher Header -->
+    <section class="teacher-header">
+        <div class="teacher-profile">
+            <div class="teacher-avatar">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="teacher-info">
+                <h1>Sarah Ahmed</h1>
+                <div class="teacher-subjects">Mathematics & Physics Teacher</div>
+                <div class="teacher-rating">
+                    <i class="fas fa-star"></i>
+                    <span>4.8 (150+ students)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teacher Details Section -->
+    <section class="teacher-details-section">
+        <div class="tabs-container">
+            <!-- Tabs Navigation -->
+            <div class="tabs-nav">
+                <button class="tab-button active" data-tab="description">
+                    <i class="fas fa-info-circle"></i>
+                    Description
+                </button>
+                <button class="tab-button" data-tab="files">
+                    <i class="fas fa-file-alt"></i>
+                    Files
+                </button>
+                <button class="tab-button" data-tab="videos">
+                    <i class="fas fa-video"></i>
+                    Videos
+                </button>
+                <button class="tab-button" data-tab="bookings">
+                    <i class="fas fa-calendar-check"></i>
+                    Bookings
+                </button>
+            </div>
+
+            <!-- Description Tab -->
+            <div class="tab-content active" id="description">
+                <div class="description-content">
+                    <h3>About Sarah</h3>
+                    <p>Sarah is a highly qualified IB Mathematics and Physics teacher with over 8 years of experience in international education. She holds a Master's degree in Mathematics Education and is certified in both IB Mathematics HL/SL and Physics HL/SL.</p>
+                    
+                    <p>Sarah has successfully guided hundreds of students through their IB journey, with a 95% pass rate and many students achieving top scores of 6 and 7. Her teaching approach focuses on building strong conceptual understanding while developing problem-solving skills.</p>
+                    
+                    <p>She specializes in:</p>
+                    <ul>
+                        <li>IB Mathematics Analysis and Approaches (HL/SL)</li>
+                        <li>IB Mathematics Applications and Interpretation (HL/SL)</li>
+                        <li>IB Physics (HL/SL)</li>
+                        <li>Internal Assessment guidance</li>
+                        <li>Extended Essay supervision</li>
+                    </ul>
+
+                    <div class="teacher-stats">
+                        <div class="stat-card">
+                            <div class="stat-number">8+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">95%</div>
+                            <div class="stat-label">Pass Rate</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">150+</div>
+                            <div class="stat-label">Students Taught</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">4.8</div>
+                            <div class="stat-label">Average Rating</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Files Tab -->
+            <div class="tab-content" id="files">
+                <div class="files-grid">
+                    <div class="file-card">
+                        <div class="file-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="file-name">IB Math HL Study Guide</div>
+                        <div class="file-info">PDF • 2.5 MB • Updated 2 weeks ago</div>
+                    </div>
+                    
+                    <div class="file-card">
+                        <div class="file-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="file-name">Physics Formula Sheet</div>
+                        <div class="file-info">PDF • 1.8 MB • Updated 1 month ago</div>
+                    </div>
+                    
+                    <div class="file-card">
+                        <div class="file-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="file-name">Practice Problems Collection</div>
+                        <div class="file-info">PDF • 4.2 MB • Updated 3 weeks ago</div>
+                    </div>
+                    
+                    <div class="file-card">
+                        <div class="file-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="file-name">Internal Assessment Guide</div>
+                        <div class="file-info">PDF • 3.1 MB • Updated 1 week ago</div>
+                    </div>
+                    
+                    <div class="file-card">
+                        <div class="file-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="file-name">Past Paper Solutions</div>
+                        <div class="file-info">PDF • 5.7 MB • Updated 2 months ago</div>
+                    </div>
+                    
+                    <div class="file-card">
+                        <div class="file-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="file-name">Extended Essay Examples</div>
+                        <div class="file-info">PDF • 2.9 MB • Updated 1 month ago</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Videos Tab -->
+            <div class="tab-content" id="videos">
+                <div class="videos-grid">
+                    <div class="video-card" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                        <div class="video-thumbnail">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <div class="video-title">Calculus Fundamentals</div>
+                            <div class="video-duration">45:30</div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                        <div class="video-thumbnail">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <div class="video-title">Physics Mechanics</div>
+                            <div class="video-duration">52:15</div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                        <div class="video-thumbnail">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <div class="video-title">Integration Techniques</div>
+                            <div class="video-duration">38:45</div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                        <div class="video-thumbnail">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <div class="video-title">Wave Physics</div>
+                            <div class="video-duration">41:20</div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                        <div class="video-thumbnail">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <div class="video-title">Statistics and Probability</div>
+                            <div class="video-duration">47:10</div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                        <div class="video-thumbnail">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <div class="video-title">Electricity and Magnetism</div>
+                            <div class="video-duration">55:30</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bookings Tab -->
+            <div class="tab-content" id="bookings">
+                <div class="bookings-list">
+                    <div class="booking-card">
+                        <div class="booking-header">
+                            <div class="student-name">Ahmed Hassan</div>
+                            <div class="booking-status status-confirmed">Confirmed</div>
+                        </div>
+                        <div class="booking-details">
+                            <div class="detail-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Today, 3:00 PM</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-clock"></i>
+                                <span>90 minutes</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-book"></i>
+                                <span>Mathematics HL</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="booking-card">
+                        <div class="booking-header">
+                            <div class="student-name">Layla Al-Rashid</div>
+                            <div class="booking-status status-pending">Pending</div>
+                        </div>
+                        <div class="booking-details">
+                            <div class="detail-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Tomorrow, 10:00 AM</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-clock"></i>
+                                <span>120 minutes</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-book"></i>
+                                <span>Physics SL</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="booking-card">
+                        <div class="booking-header">
+                            <div class="student-name">Omar Khalil</div>
+                            <div class="booking-status status-confirmed">Confirmed</div>
+                        </div>
+                        <div class="booking-details">
+                            <div class="detail-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Wednesday, 2:30 PM</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-clock"></i>
+                                <span>60 minutes</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-book"></i>
+                                <span>Mathematics SL</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="booking-card">
+                        <div class="booking-header">
+                            <div class="student-name">Nour Al-Zahra</div>
+                            <div class="booking-status status-cancelled">Cancelled</div>
+                        </div>
+                        <div class="booking-details">
+                            <div class="detail-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Yesterday, 4:00 PM</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-clock"></i>
+                                <span>90 minutes</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-book"></i>
+                                <span>Physics HL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="video-container">
+                <iframe id="videoFrame" src="" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="logo-text">
+                            <div class="logo-main">IB JORDAN</div>
+                            <div class="logo-ib">Network</div>
+                        </div>
+                    </div>
+                    <p class="footer-description">Connecting students, parents, and educators in the International Baccalaureate community in Jordan.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="find-teacher.html">Find IB Teacher</a></li>
+                        <li><a href="career.html">Career</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">Join Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="join-teacher.html">Join as an IB Teacher</a></li>
+                        <li><a href="join-student.html">Join as an IB Student</a></li>
+                        <li><a href="become-teacher.html">Become an IB Teacher</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">Contact Info</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@jordanibnetwork.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+962 79 123 4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Amman, Jordan</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2024 IB JORDAN Network. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Tab functionality
+            $('.tab-button').on('click', function() {
+                const tabId = $(this).data('tab');
+                
+                // Remove active class from all tabs and buttons
+                $('.tab-button').removeClass('active');
+                $('.tab-content').removeClass('active');
+                
+                // Add active class to clicked button and corresponding content
+                $(this).addClass('active');
+                $('#' + tabId).addClass('active');
+            });
+
+            // Video modal functionality
+            $('.video-card').on('click', function() {
+                const videoUrl = $(this).data('video');
+                $('#videoFrame').attr('src', videoUrl);
+                $('#videoModal').addClass('active');
+            });
+
+            // Close modal
+            $('#closeModal, #videoModal').on('click', function(e) {
+                if (e.target === this) {
+                    $('#videoModal').removeClass('active');
+                    $('#videoFrame').attr('src', '');
+                }
+            });
+
+            // Close modal with Escape key
+            $(document).on('keydown', function(e) {
+                if (e.key === 'Escape' && $('#videoModal').hasClass('active')) {
+                    $('#videoModal').removeClass('active');
+                    $('#videoFrame').attr('src', '');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

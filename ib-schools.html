@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IB Schools in Jordan - IB JORDAN Network</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    .schools-hero { padding: 5rem 0 3rem; background: linear-gradient(135deg,#4CAF50,#45a049); color:#fff; text-align:center; }
+    .schools-hero h1 { margin:0; }
+    .schools-grid { max-width:1200px; margin: -60px auto 40px; padding: 0 20px; display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.5rem; }
+    .school-card { background:#fff; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,.1); overflow:hidden; cursor:pointer; transform: translateY(0); transition: transform .35s ease, box-shadow .35s ease; }
+    .school-card:hover { transform: translateY(-8px); box-shadow:0 18px 40px rgba(0,0,0,.15); }
+    .school-cover { height:120px; background:linear-gradient(135deg,#667eea,#764ba2); position:relative; }
+    .school-logo { width:84px; height:84px; border-radius:50%; background:#fff; display:flex; align-items:center; justify-content:center; position:absolute; left:50%; bottom:-42px; transform:translateX(-50%); box-shadow:0 8px 20px rgba(0,0,0,.12); }
+    .school-logo img { width:64px; height:64px; object-fit:contain; }
+    .school-body { padding:60px 18px 18px; text-align:center; }
+    .school-name { font-weight:700; color:#333; margin-bottom:6px; }
+    .school-meta { color:#666; font-size:.9rem; display:flex; justify-content:center; gap:10px; }
+    .school-meta i { color:#4CAF50; }
+    .catalog { max-width:1200px; margin: 10px auto 60px; padding:0 20px; }
+    .catalog h2 { text-align:center; margin: 1rem 0 1.2rem; }
+    .catalog-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; }
+    .catalog-card { border-radius:12px; overflow:hidden; box-shadow:0 6px 20px rgba(0,0,0,.1); background:#fff; }
+    .catalog-card img { width:100%; height:160px; object-fit:cover; display:block; }
+    .catalog-caption { padding:.75rem 1rem; font-size:.95rem; color:#333; }
+    @keyframes floaty { 0%{transform:translateY(0)} 50%{transform:translateY(-6px)} 100%{transform:translateY(0)} }
+    .school-card:nth-child(odd){ animation: floaty 4s ease-in-out infinite; }
+    .school-card:nth-child(even){ animation: floaty 5s ease-in-out infinite; }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      document.querySelectorAll('.school-card').forEach(function(card){
+        card.addEventListener('click', function(){
+          var schoolId = this.getAttribute('data-school-id');
+          window.location.href = 'school-details.html?id=' + encodeURIComponent(schoolId);
+        });
+      });
+    });
+  </script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <div class="logo"><img src="imgs/logo.jpg" alt="IB JORDAN Network" /></div>
+        <nav class="nav">
+          <ul class="nav-list">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+            <li><a href="find-teacher.html" class="nav-link">Find IB Teacher</a></li>
+            <li><a href="ib-schools.html" class="nav-link active">IB Schools</a></li>
+            <li><a href="career.html" class="nav-link">Career</a></li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <a href="login.html" class="btn btn-login">Login</a>
+          <div class="dropdown">
+            <button class="btn btn-join">Join us <i class="fas fa-chevron-down"></i></button>
+            <div class="dropdown-menu">
+              <a href="join-teacher.html" class="dropdown-item">Join as an IB Teacher</a>
+              <a href="join-student.html" class="dropdown-item">Join as an IB Student</a>
+              <a href="become-teacher.html" class="dropdown-item">Become an IB Teacher</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="schools-hero">
+      <div class="container">
+        <h1 class="section-title">IB Schools in Jordan</h1>
+        <p class="section-subtitle">Explore IB authorized schools. Click a school to view details, gallery, and map.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="schools-grid">
+        <article class="school-card" data-school-id="amman-international">
+          <div class="school-cover"></div>
+          <div class="school-logo"><img src="imgs/1.png" alt="School Logo"/></div>
+          <div class="school-body">
+            <h3 class="school-name">Amman International School</h3>
+            <div class="school-meta">
+              <span><i class="fas fa-city"></i> Amman</span>
+              <span><i class="fas fa-phone"></i> +962-6-000-0000</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="school-card" data-school-id="royal-oaks">
+          <div class="school-cover"></div>
+          <div class="school-logo"><img src="imgs/2.png" alt="School Logo"/></div>
+          <div class="school-body">
+            <h3 class="school-name">Royal Oaks IB Academy</h3>
+            <div class="school-meta">
+              <span><i class="fas fa-city"></i> Amman</span>
+              <span><i class="fas fa-phone"></i> +962-6-111-1111</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="school-card" data-school-id="jordan-valley">
+          <div class="school-cover"></div>
+          <div class="school-logo"><img src="imgs/3.png" alt="School Logo"/></div>
+          <div class="school-body">
+            <h3 class="school-name">Jordan Valley IB School</h3>
+            <div class="school-meta">
+              <span><i class="fas fa-city"></i> Zarqa</span>
+              <span><i class="fas fa-phone"></i> +962-5-222-2222</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Catalog/Gallery -->
+    <section class="catalog">
+      <h2 class="section-title">Schools Catalog</h2>
+      <div class="catalog-grid">
+        <div class="catalog-card"><img src="imgs/school1.jpg" alt="School"/><div class="catalog-caption">Campus Entrance</div></div>
+        <div class="catalog-card"><img src="imgs/school2.jpg" alt="School"/><div class="catalog-caption">Modern Classrooms</div></div>
+        <div class="catalog-card"><img src="imgs/school3.jpg" alt="School"/><div class="catalog-caption">Sports Facilities</div></div>
+        <div class="catalog-card"><img src="imgs/school4.jpg" alt="School"/><div class="catalog-caption">Library</div></div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-column">
+            <div class="footer-logo">
+              <div class="logo-icon"><i class="fas fa-book-open"></i><div class="logo-network"></div></div>
+              <div class="logo-text"><span class="logo-main">JORDAN IB NETWORK</span><span class="logo-ib">IB</span></div>
+            </div>
+            <p class="footer-description">Supporting the IB community in Jordan by connecting families, educators, and schools.</p>
+          </div>
+          <div class="footer-column">
+            <h3 class="footer-title">Quick Links</h3>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="find-teacher.html">Find an IB Tutor</a></li>
+              <li><a href="ib-schools.html">IB Schools in Jordan</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3 class="footer-title">Contact</h3>
+            <div class="contact-info">
+              <div class="contact-item"><i class="fas fa-map-marker-alt"></i><span>Amman, Jordan</span></div>
+              <div class="contact-item"><i class="fas fa-envelope"></i><span>info@jordanibnetwork.com</span></div>
+              <div class="contact-item"><i class="fas fa-phone"></i><span>+962-7-0000-0000</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2025 Jordan IB Network. All rights reserved.</p></div>
+      </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+  </html>
+
+

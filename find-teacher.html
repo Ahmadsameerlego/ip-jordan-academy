@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find IB Teacher - IB JORDAN Network</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .search-section {
+            padding: 4rem 0 2rem;
+            background: linear-gradient(135deg, #16a279 0%, #45a049 100%);
+            color: white;
+        }
+        
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .search-bar {
+            position: relative;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 1rem 3rem 1rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            outline: none;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 1.2rem;
+        }
+        
+        .filters-section {
+            padding: 2rem 0;
+            background: white;
+        }
+        
+        .filters-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .filter-pills {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        
+        .filter-pill {
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            border: 2px solid #16a279;
+            background: white;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        
+        .filter-pill.active {
+            background: #16a279;
+            color: white;
+        }
+        
+        .filter-pill:hover {
+            background: #16a279;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .teachers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .teacher-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .teacher-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .teacher-header {
+            position: relative;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .teacher-shape {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: rgba(255,255,255,0.3);
+        }
+        
+        .teacher-image {
+            position: relative;
+            z-index: 2;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 4px solid white;
+            object-fit: cover;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #666;
+        }
+        
+        .teacher-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .teacher-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        
+        .teacher-subjects {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .teacher-rating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: #16a279;
+            font-weight: 500;
+        }
+        
+        .teacher-rating i {
+            color: #FFD700;
+        }
+        
+        .teacher-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-weight: bold;
+            color: #16a279;
+            font-size: 1.1rem;
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        .shape-1 { background: linear-gradient(135deg, #16a279, #45a049); }
+        .shape-2 { background: linear-gradient(135deg, #9C27B0, #7B1FA2); }
+        .shape-3 { background: linear-gradient(135deg, #2196F3, #1976D2); }
+        .shape-4 { background: linear-gradient(135deg, #FF9800, #F57C00); }
+        .shape-5 { background: linear-gradient(135deg, #00BCD4, #0097A7); }
+        .shape-6 { background: linear-gradient(135deg, #FFC107, #FFA000); }
+        .shape-7 { background: linear-gradient(135deg, #795548, #5D4037); }
+        .shape-8 { background: linear-gradient(135deg, #FF5722, #D84315); }
+        .shape-9 { background: linear-gradient(135deg, #607D8B, #455A64); }
+        
+        @media (max-width: 768px) {
+            .teachers-grid {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+            
+            .filter-pills {
+                gap: 0.5rem;
+            }
+            
+            .filter-pill {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .search-input {
+                font-size: 1rem;
+                padding: 0.8rem 2.5rem 0.8rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="imgs/logo.jpg" alt="IB JORDAN Network">
+            </div>
+            
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="find-teacher.html" class="nav-link active">Find IB Teacher</a></li>
+                    <li><a href="ib-schools.html" class="nav-link">IB Schools</a></li>
+                    <li><a href="career.html" class="nav-link">Career</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <a href="login.html" class="btn btn-login">Login</a>
+                <div class="dropdown">
+                    <button class="btn btn-join">
+                        Join us
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="join-teacher.html" class="dropdown-item">Join as an IB Teacher</a>
+                        <a href="join-student.html" class="dropdown-item">Join as an IB Student</a>
+                        <a href="become-teacher.html" class="dropdown-item">Become an IB Teacher</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-container">
+                <h1 class="section-title text-center">Ready to find your perfect IB teacher?</h1>
+                
+                <div class="search-bar">
+                    <input type="text" class="search-input" placeholder="Search for teachers, subjects, or schools...">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="filters-section">
+        <div class="container">
+            <div class="filters-container">
+                <div class="filter-pills">
+                    <div class="filter-pill active" data-filter="all">All Subjects</div>
+                    <div class="filter-pill" data-filter="math">Mathematics</div>
+                    <div class="filter-pill" data-filter="science">Science</div>
+                    <div class="filter-pill" data-filter="english">English</div>
+                    <div class="filter-pill" data-filter="arabic">Arabic</div>
+                    <div class="filter-pill" data-filter="business">Business</div>
+                    <div class="filter-pill" data-filter="arts">Arts & Design</div>
+                    <div class="filter-pill" data-filter="computer">Computer Science</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teachers Grid Section -->
+    <section class="teachers-section">
+        <div class="container">
+            <div class="teachers-grid" id="teachersGrid">
+                <!-- Teacher Card 1 -->
+                <div class="teacher-card" data-subjects="math,physics">
+                    <div class="teacher-header">
+                        <div class="teacher-shape shape-1">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <div class="teacher-image">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    <div class="teacher-info">
+                        <div class="teacher-name">Sarah Ahmed</div>
+                        <div class="teacher-subjects">Mathematics & Physics</div>
+                        <div class="teacher-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.8 (150+ students)</span>
+                        </div>
+                        <div class="teacher-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">5</div>
+                                <div class="stat-label">Years Exp</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">95%</div>
+                                <div class="stat-label">Success Rate</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">4.9</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Teacher Card 2 -->
+                <div class="teacher-card" data-subjects="chemistry,biology">
+                    <div class="teacher-header">
+                        <div class="teacher-shape shape-2">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <div class="teacher-image">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    <div class="teacher-info">
+                        <div class="teacher-name">Dr. Omar Khalil</div>
+                        <div class="teacher-subjects">Chemistry & Biology</div>
+                        <div class="teacher-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.9 (200+ students)</span>
+                        </div>
+                        <div class="teacher-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">8</div>
+                                <div class="stat-label">Years Exp</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">98%</div>
+                                <div class="stat-label">Success Rate</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">4.9</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Teacher Card 3 -->
+                <div class="teacher-card" data-subjects="english,arabic">
+                    <div class="teacher-header">
+                        <div class="teacher-shape shape-3">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="teacher-image">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    <div class="teacher-info">
+                        <div class="teacher-name">Layla Hassan</div>
+                        <div class="teacher-subjects">English & Arabic</div>
+                        <div class="teacher-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.7 (180+ students)</span>
+                        </div>
+                        <div class="teacher-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">6</div>
+                                <div class="stat-label">Years Exp</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">92%</div>
+                                <div class="stat-label">Success Rate</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">4.7</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Teacher Card 4 -->
+                <div class="teacher-card" data-subjects="computer,math">
+                    <div class="teacher-header">
+                        <div class="teacher-shape shape-4">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="teacher-image">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    <div class="teacher-info">
+                        <div class="teacher-name">Ahmed Zaid</div>
+                        <div class="teacher-subjects">Computer Science & Math</div>
+                        <div class="teacher-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.8 (120+ students)</span>
+                        </div>
+                        <div class="teacher-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">4</div>
+                                <div class="stat-label">Years Exp</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">94%</div>
+                                <div class="stat-label">Success Rate</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">4.8</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Teacher Card 5 -->
+                <div class="teacher-card" data-subjects="arts,design">
+                    <div class="teacher-header">
+                        <div class="teacher-shape shape-5">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="teacher-image">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    <div class="teacher-info">
+                        <div class="teacher-name">Nour Al-Rashid</div>
+                        <div class="teacher-subjects">Visual Arts & Design</div>
+                        <div class="teacher-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.6 (90+ students)</span>
+                        </div>
+                        <div class="teacher-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">7</div>
+                                <div class="stat-label">Years Exp</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">89%</div>
+                                <div class="stat-label">Success Rate</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">4.6</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Teacher Card 6 -->
+                <div class="teacher-card" data-subjects="business,economics">
+                    <div class="teacher-header">
+                        <div class="teacher-shape shape-6">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="teacher-image">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    <div class="teacher-info">
+                        <div class="teacher-name">Rania Saleh</div>
+                        <div class="teacher-subjects">Business & Economics</div>
+                        <div class="teacher-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.9 (160+ students)</span>
+                        </div>
+                        <div class="teacher-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">9</div>
+                                <div class="stat-label">Years Exp</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">96%</div>
+                                <div class="stat-label">Success Rate</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">4.9</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Teacher Card 7 -->
+                <div class="teacher-card" data-subjects="science,physics">
+                    <div class="teacher-header">
+                        <div class="teacher-shape shape-7">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="teacher-image">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    <div class="teacher-info">
+                        <div class="teacher-name">Dr. Khalid Mansour</div>
+                        <div class="teacher-subjects">Physics & Science</div>
+                        <div class="teacher-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.8 (140+ students)</span>
+                        </div>
+                        <div class="teacher-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">10</div>
+                                <div class="stat-label">Years Exp</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">97%</div>
+                                <div class="stat-label">Success Rate</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">4.8</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Teacher Card 8 -->
+                <div class="teacher-card" data-subjects="computer,security">
+                    <div class="teacher-header">
+                        <div class="teacher-shape shape-8">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="teacher-image">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    <div class="teacher-info">
+                        <div class="teacher-name">Yousef Al-Hamdan</div>
+                        <div class="teacher-subjects">Computer Science & Security</div>
+                        <div class="teacher-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.7 (110+ students)</span>
+                        </div>
+                        <div class="teacher-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">6</div>
+                                <div class="stat-label">Years Exp</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">93%</div>
+                                <div class="stat-label">Success Rate</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">4.7</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Teacher Card 9 -->
+                <div class="teacher-card" data-subjects="math,engineering">
+                    <div class="teacher-header">
+                        <div class="teacher-shape shape-9">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <div class="teacher-image">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    <div class="teacher-info">
+                        <div class="teacher-name">Mariam Al-Zahra</div>
+                        <div class="teacher-subjects">Mathematics & Engineering</div>
+                        <div class="teacher-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.9 (130+ students)</span>
+                        </div>
+                        <div class="teacher-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">8</div>
+                                <div class="stat-label">Years Exp</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">95%</div>
+                                <div class="stat-label">Success Rate</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">4.9</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="logo-text">
+                            <div class="logo-main">Jordan IB Network</div>
+                            <div class="logo-ib">International Baccalaureate</div>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        Connecting IB teachers, students, and schools across Jordan for better educational opportunities.
+                    </p>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="career.html">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Contact Info</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@jordanibnetwork.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+962 6 123 4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Amman, Jordan</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Jordan IB Network. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Filter functionality
+            $('.filter-pill').on('click', function() {
+                $('.filter-pill').removeClass('active');
+                $(this).addClass('active');
+                
+                const filter = $(this).data('filter');
+                filterTeachers(filter);
+            });
+            
+            function filterTeachers(filter) {
+                if (filter === 'all') {
+                    $('.teacher-card').show();
+                } else {
+                    $('.teacher-card').hide();
+                    $('.teacher-card[data-subjects*="' + filter + '"]').show();
+                }
+            }
+            
+            // Search functionality
+            $('.search-input').on('input', function() {
+                const searchTerm = $(this).val().toLowerCase();
+                
+                $('.teacher-card').each(function() {
+                    const teacherName = $(this).find('.teacher-name').text().toLowerCase();
+                    const teacherSubjects = $(this).find('.teacher-subjects').text().toLowerCase();
+                    
+                    if (teacherName.includes(searchTerm) || teacherSubjects.includes(searchTerm)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
+            
+            // Teacher card click functionality
+            $('.teacher-card').on('click', function() {
+                window.location.href = 'teacher-details.html';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>School Details - IB JORDAN Network</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    .school-hero { margin-top:100px; background:linear-gradient(135deg,#667eea,#764ba2); color:#fff; padding:3rem 0; }
+    .school-header { max-width:1200px; margin:0 auto; display:flex; align-items:center; gap:1.5rem; padding:0 20px; }
+    .school-logo-lg { width:110px; height:110px; border-radius:50%; background:#fff; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 30px rgba(0,0,0,.15); }
+    .school-logo-lg img { width:80px; height:80px; object-fit:contain; }
+    .school-name-lg { font-size:2rem; font-weight:800; margin:0 0 .3rem; }
+    .school-meta-lg { opacity:.95; display:flex; gap:1rem; flex-wrap:wrap; }
+    .school-meta-lg i { color:#ffd700; }
+    .details-container { max-width:1200px; margin: 1.5rem auto 2.5rem; padding: 0 20px; display:grid; grid-template-columns:2fr 1fr; gap:1.5rem; }
+    .card { background:#fff; border-radius:12px; box-shadow:0 6px 22px rgba(0,0,0,.1); padding:1.25rem; }
+    .gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; }
+    .gallery img { width:100%; height:160px; object-fit:cover; border-radius:10px; }
+    .info-list { list-style:none; padding:0; margin:0; display:grid; gap:.6rem; }
+    .info-list li { display:flex; align-items:center; gap:.6rem; color:#555; }
+    .info-list i { color:#4CAF50; }
+    .map-section { max-width:1200px; margin: 0 auto 40px; padding: 0 20px; }
+    .map-container { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:12px; box-shadow:0 8px 25px rgba(0,0,0,.12); }
+    .map-container iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
+    @media(max-width: 900px){ .details-container { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="logo"><img src="imgs/logo.jpg" alt="IB JORDAN Network" /></div>
+      <nav class="nav">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="find-teacher.html" class="nav-link">Find IB Teacher</a></li>
+          <li><a href="ib-schools.html" class="nav-link active">IB Schools</a></li>
+          <li><a href="career.html" class="nav-link">Career</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <a href="login.html" class="btn btn-login">Login</a>
+        <div class="dropdown">
+          <button class="btn btn-join">Join us <i class="fas fa-chevron-down"></i></button>
+          <div class="dropdown-menu">
+            <a href="join-teacher.html" class="dropdown-item">Join as an IB Teacher</a>
+            <a href="join-student.html" class="dropdown-item">Join as an IB Student</a>
+            <a href="become-teacher.html" class="dropdown-item">Become an IB Teacher</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero / Header -->
+  <section class="school-hero">
+    <div class="school-header">
+      <div class="school-logo-lg"><img id="schoolLogo" src="imgs/1.png" alt="School Logo" /></div>
+      <div>
+        <h1 id="schoolName" class="school-name-lg">Amman International School</h1>
+        <div class="school-meta-lg">
+          <span><i class="fas fa-map-marker-alt"></i> <span id="schoolCity">Amman</span></span>
+          <span><i class="fas fa-phone"></i> <span id="schoolPhone">+962-6-000-0000</span></span>
+          <span><i class="fas fa-globe"></i> <a id="schoolWebsite" href="#" target="_blank" style="color:#fff;text-decoration:underline;">Website</a></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Details / Gallery -->
+  <section class="details-container">
+    <div class="card">
+      <h2 class="section-title" style="margin-bottom:1rem;">About the School</h2>
+      <p id="schoolDescription" style="color:#555; line-height:1.8;">
+        A leading IB authorized school offering PYP, MYP and DP with modern facilities and a student-centered learning approach.
+      </p>
+      <h3 class="section-title" style="font-size:1.2rem; margin:1.2rem 0 .8rem;">Gallery</h3>
+      <div class="gallery">
+        <img src="imgs/school1.jpg" alt="Campus" />
+        <img src="imgs/school2.jpg" alt="Classroom" />
+        <img src="imgs/school3.jpg" alt="Sports" />
+        <img src="imgs/school4.jpg" alt="Library" />
+      </div>
+    </div>
+    <aside class="card">
+      <h3 class="section-title" style="font-size:1.2rem; margin-bottom:.8rem;">Key Information</h3>
+      <ul class="info-list">
+        <li><i class="fas fa-check-circle"></i> IB Authorization: PYP, MYP, DP</li>
+        <li><i class="fas fa-users"></i> Students: 1200+</li>
+        <li><i class="fas fa-chalkboard-teacher"></i> Teachers: 150+</li>
+        <li><i class="fas fa-clock"></i> Founded: 2002</li>
+      </ul>
+    </aside>
+  </section>
+
+  <!-- Map -->
+  <section class="map-section">
+    <h2 class="section-title" style="text-align:center; margin:0 0 1rem;">Location</h2>
+    <div class="map-container">
+      <iframe id="schoolMap" src="https://www.google.com/maps?q=Amman%20Jordan&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <div class="footer-logo">
+            <div class="logo-icon"><i class="fas fa-book-open"></i><div class="logo-network"></div></div>
+            <div class="logo-text"><span class="logo-main">JORDAN IB NETWORK</span><span class="logo-ib">IB</span></div>
+          </div>
+          <p class="footer-description">Supporting the IB community in Jordan by connecting families, educators, and schools.</p>
+        </div>
+        <div class="footer-column">
+          <h3 class="footer-title">Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="find-teacher.html">Find an IB Tutor</a></li>
+            <li><a href="ib-schools.html">IB Schools in Jordan</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3 class="footer-title">Contact</h3>
+          <div class="contact-info">
+            <div class="contact-item"><i class="fas fa-map-marker-alt"></i><span>Amman, Jordan</span></div>
+            <div class="contact-item"><i class="fas fa-envelope"></i><span>info@jordanibnetwork.com</span></div>
+            <div class="contact-item"><i class="fas fa-phone"></i><span>+962-7-0000-0000</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2025 Jordan IB Network. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <script>
+    // Basic dynamic population from ?id=
+    (function(){
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id') || 'amman-international';
+      const SCHOOLS = {
+        'amman-international': {
+          name: 'Amman International School', city: 'Amman', phone: '+962-6-000-0000', logo: 'imgs/1.png', website: '#', mapQuery: 'Amman Jordan',
+          desc: 'A leading IB authorized school offering PYP, MYP and DP with modern facilities and a student-centered learning approach.'
+        },
+        'royal-oaks': {
+          name: 'Royal Oaks IB Academy', city: 'Amman', phone: '+962-6-111-1111', logo: 'imgs/2.png', website: '#', mapQuery: 'Amman Jordan',
+          desc: 'Royal Oaks provides a rigorous IB curriculum with a focus on inquiry and holistic development.'
+        },
+        'jordan-valley': {
+          name: 'Jordan Valley IB School', city: 'Zarqa', phone: '+962-5-222-2222', logo: 'imgs/3.png', website: '#', mapQuery: 'Zarqa Jordan',
+          desc: 'Jordan Valley IB School fosters global citizenship and academic excellence across PYP to DP.'
+        }
+      };
+      const s = SCHOOLS[id];
+      if(s){
+        document.getElementById('schoolName').textContent = s.name;
+        document.getElementById('schoolCity').textContent = s.city;
+        document.getElementById('schoolPhone').textContent = s.phone;
+        document.getElementById('schoolLogo').src = s.logo;
+        document.getElementById('schoolWebsite').href = s.website;
+        document.getElementById('schoolDescription').textContent = s.desc;
+        document.getElementById('schoolMap').src = 'https://www.google.com/maps?q=' + encodeURIComponent(s.mapQuery) + '&output=embed';
+      }
+    })();
+  </script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+
+

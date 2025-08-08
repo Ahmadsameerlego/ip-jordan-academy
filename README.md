@@ -78,7 +78,7 @@ php -S localhost:8000
 
 ## الألوان المستخدمة
 
-- **الأخضر الرئيسي**: `#4CAF50`
+- **الأخضر الرئيسي**: `#16a279`
 - **الرمادي الداكن**: `#333`
 - **الرمادي الفاتح**: `#f5f5f5`
 - **الأبيض**: `#ffffff`
@@ -119,7 +119,7 @@ php -S localhost:8000
 عدّل متغيرات CSS في ملف `styles.css`:
 ```css
 :root {
-    --primary-color: #4CAF50;
+    --primary-color: #16a279;
     --dark-gray: #333;
     --light-gray: #f5f5f5;
 }
