@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join as a Student - IB JORDAN Network</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="imgs/logo.jpg" alt="IB JORDAN Network" />
+            </div>
+
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="#" class="nav-link">Find IB Teacher</a></li>
+                    <li><a href="#" class="nav-link">IB Schools</a></li>
+                    <li><a href="career.html" class="nav-link">Career</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <a href="login.html" class="btn btn-login">Login</a>
+                <div class="dropdown">
+                    <button class="btn btn-join">
+                        Join us
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="http://jordanibnetwork.com/join-as-an-ib-teacher/" class="dropdown-item">Join as an IB Teacher</a>
+                        <a href="join-student.html" class="dropdown-item">Join as an IB Student</a>
+                        <a href="become-teacher.html" class="dropdown-item">Become an IB Teacher</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="section-title text-center">Join as an IB Student</h1>
+            <p class="section-subtitle text-center">Join our network and connect with qualified IB teachers</p>
+        </div>
+    </section>
+
+    <!-- Join Student Form Section -->
+    <section class="join-form-section">
+        <div class="container">
+            <div class="form-container">
+                <form id="joinStudentForm" class="contact-form" action="#" method="post">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="studentName">Student Name *</label>
+                            <input type="text" id="studentName" name="studentName" placeholder="Student's full name" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" placeholder="student@example.com" required />
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone *</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+962-7-xxxx-xxxx" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="parentName">Parent Name *</label>
+                            <input type="text" id="parentName" name="parentName" placeholder="Parent's full name" required />
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="age">Age *</label>
+                            <input type="number" id="age" name="age" min="5" max="25" placeholder="Age" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="class">Class/Grade *</label>
+                            <select id="class" name="class" required>
+                                <option value="">Select Class</option>
+                                <option value="grade1">Grade 1</option>
+                                <option value="grade2">Grade 2</option>
+                                <option value="grade3">Grade 3</option>
+                                <option value="grade4">Grade 4</option>
+                                <option value="grade5">Grade 5</option>
+                                <option value="grade6">Grade 6</option>
+                                <option value="grade7">Grade 7</option>
+                                <option value="grade8">Grade 8</option>
+                                <option value="grade9">Grade 9</option>
+                                <option value="grade10">Grade 10</option>
+                                <option value="grade11">Grade 11</option>
+                                <option value="grade12">Grade 12</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="specialization">التخصص *</label>
+                            <select id="specialization" name="specialization" required>
+                                <option value="">اختر التخصص</option>
+                                <option value="علمي">علمي</option>
+                                <option value="ادبي">ادبي</option>
+                                <option value="صناعي">صناعي</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="schoolName">School Name *</label>
+                            <input type="text" id="schoolName" name="schoolName" placeholder="Current school name" required />
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="password">Password *</label>
+                            <input type="password" id="password" name="password" placeholder="Create a password" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password *</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required />
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Join as Student</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal" aria-hidden="true">
+        <div class="modal-overlay" data-modal-close></div>
+        <div class="modal-content" role="dialog" aria-modal="true">
+            <div class="modal-header">
+                <h3>Registration Successful!</h3>
+                <button class="modal-close" aria-label="Close" data-modal-close>&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="success-message">
+                    <i class="fas fa-check-circle"></i>
+                    <h4>سيتم التواصل معك خلال 24 ساعة</h4>
+                    <p>Thank you for joining Jordan IB Network! We will contact you within 24 hours to complete your registration.</p>
+                    <div class="contact-info">
+                        <p><strong>For immediate contact:</strong></p>
+                        <p><i class="fas fa-phone"></i> +962-7-0000-0000</p>
+                        <p><i class="fas fa-envelope"></i> info@jordanibnetwork.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-book-open"></i>
+                            <div class="logo-network"></div>
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-main">JORDAN IB NETWORK</span>
+                            <span class="logo-ib">IB</span>
+                        </div>
+                    </div>
+                    <p class="footer-description">Supporting the IB community in Jordan by connecting families, educators, and schools.</p>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">Find an IB Tutor</a></li>
+                        <li><a href="#">Book a Counseling Session</a></li>
+                        <li><a href="#">IB Schools in Jordan</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">For Educators & Schools</h3>
+                    <ul class="footer-links">
+                        <li><a href="http://jordanibnetwork.com/join-as-an-ib-teacher/">Become an IB Teacher</a></li>
+                        <li><a href="#">IB Training Pathway</a></li>
+                        <li><a href="#">Post a Job Opportunity</a></li>
+                        <li><a href="#">School Support Services</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Contact</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Amman, Jordan</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@jordanibnetwork.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+962-7-0000-0000</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Jordan IB Network. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
